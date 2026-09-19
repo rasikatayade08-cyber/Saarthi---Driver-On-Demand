@@ -9,6 +9,7 @@ import SaarthiShield from '../components/SaarthiShield';
 import SafetySuiteModal from '../components/SafetySuiteModal';
 import PaymentRatingModal from '../components/PaymentRatingModal';
 import FareEstimator from '../components/FareEstimator';
+import LiveMap from '../components/LiveMap';
 import {
   MapPin, Calendar, Car, Clock, ChevronRight,
   Star, Plus, CreditCard, ShieldCheck, Heart, Crown, Users, Zap, Calculator
@@ -326,10 +327,39 @@ export default function CustomerHomePage() {
           </div>
         </button>
 
+        {/* ── LIVE INTERACTIVE MAP TELEMATICS ── */}
+        <div style={{ marginBottom: 24 }}>
+          <div className="section-header" style={{ marginBottom: 12 }}>
+            <h2 className="section-title" style={{ color: isDark ? '#ffffff' : 'var(--color-slate-900)' }}>
+              🗺️ Live Radar & Chauffeur Telematics
+            </h2>
+            <span style={{
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              color: '#10b981',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 4,
+            }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#10b981' }} />
+              Live Telemetry
+            </span>
+          </div>
+
+          <LiveMap
+            pickup={{ lat: 28.5355, lng: 77.3910, address: 'Sector 18 Metro, Noida' }}
+            destination={{ lat: 28.6139, lng: 77.2090, address: 'Connaught Place, New Delhi' }}
+            isTracking={true}
+            height="290px"
+            showRoute={true}
+          />
+        </div>
+
         {/* ── 3D SAARTHI SHIELD SHOWCASE ── */}
         <div style={{ marginBottom: 24 }}>
           <SaarthiShield onClick={() => handleQuickAction('shield')} />
         </div>
+
 
 
         {/* ── MY REGISTERED VEHICLES ── */}

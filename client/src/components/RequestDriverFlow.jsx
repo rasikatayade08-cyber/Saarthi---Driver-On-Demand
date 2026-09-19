@@ -651,6 +651,23 @@ export default function RequestDriverFlow({
                 </div>
               </div>
 
+              {/* Live Interactive Telematics Map */}
+              <div style={{ marginBottom: 14 }}>
+                <LiveMap
+                  pickup={{ lat: 28.5355, lng: 77.3910, address: formData.pickupLocation || 'Current Location (GPS)' }}
+                  destination={{ lat: 28.6139, lng: 77.2090, address: 'Destination' }}
+                  driver={assignedDriver}
+                  assignedVehicle={vehicle ? {
+                    nickname: vehicle.nickname,
+                    number: vehicle.licensePlate,
+                    type: vehicle.type
+                  } : null}
+                  isTracking={true}
+                  height="220px"
+                  showRoute={true}
+                />
+              </div>
+
               {/* Saarthi Shield compact reminder */}
               <SaarthiShield isCompact={true} />
             </div>
@@ -659,8 +676,20 @@ export default function RequestDriverFlow({
           {/* ── STEP 1: PICKUP LOCATION ── */}
           {!confirmed && !searchingDrivers && step === 1 && (
             <div style={{ animation: 'slide-up 0.3s ease forwards' }}>
+              {/* Interactive Live Map in Step 1 */}
+              <div style={{ marginBottom: 14 }}>
+                <LiveMap
+                  pickup={{ lat: 28.5355, lng: 77.3910, address: formData.pickupLocation || 'Current Location (GPS)' }}
+                  destination={{ lat: 28.6139, lng: 77.2090, address: 'Connaught Place, New Delhi' }}
+                  isTracking={false}
+                  height="190px"
+                  showRoute={true}
+                />
+              </div>
+
               <div className="input-group" style={{ marginBottom: 16 }}>
                 <label className="input-label" style={{ color: textMuted }}>Where is your vehicle parked?</label>
+
                 <div className="input-icon-wrap">
                   <Search size={16} className="input-icon" />
                   <input
